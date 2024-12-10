@@ -69,7 +69,7 @@
     "The moments we've shared mean everything to me. You've turned ordinary times into extraordinary memories, and for that, I'll always be grateful"
   </div>
   <div class="message animate__animated animate__fadeInUp" id="message3">
-    "From the moment you entered my life, you became the light that guided me through my darkest days. Your laughter, your kindness, and your love have filled every empty space in my heart. I can't picture a future that doesn't have you by my side."
+    "From the moment you entered my life, you became the light that guided me through my darkest days. Your laughter, your kindness, and your love have filled every empty space in my heart. I dont know why this happen but this is life."
   </div>
 
   <!-- Countdown Timer -->
@@ -79,13 +79,11 @@
   <button id="yes-btn" class="hidden animate__animated animate__heartBeat">Yes!</button>
 
   <!-- Background Music -->
-  <audio id="bg-music" autoplay loop>
+  <audio id="bg-music" autoplay loop muted>
     <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
   </audio>
 
-  <script>
-    document.getElementById('bg-music').play();
-  </script>
 
   <!-- GSAP Library for Animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -123,11 +121,11 @@
     }
 
     // Start the countdown for 10 seconds
-    startCountdown(10);
+    startCountdown(5);
 
     // Form Submission Button Interaction
     document.getElementById('yes-btn').addEventListener('click', () => {
-      alert("You said YES! ❤️ I can't wait to start a new journey with you.");
+      alert("You said YES! ❤️ Embrace every moment with joy, stay positive, and keep smiling! May your life be filled with endless happiness and warmth. 🌟");
     });
 
     // Background Image Slideshow
