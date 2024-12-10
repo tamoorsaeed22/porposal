@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be Mine?</title>
+
+  <!-- Animate.css for animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <style>
+    body {
+      font-family: 'Arial, sans-serif';
+      color: rgb(247, 123, 144);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 20vh;
+    }
+
+    .message {
+      font-size: 1.5rem;
+      margin: 20px auto;
+      max-width: 600px;
+      opacity: 0;
+    }
+
+    #timer {
+      font-size: 2rem;
+      margin: 30px 0;
+    }
+
+    #yes-btn {
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      background-color: #ff69b4;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #yes-btn:hover {
+      background-color: #ff1493;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="animate__animated animate__fadeInDown">Will You Be Mine?</h1>
+
+  <div class="message animate__animated animate__fadeInUp" id="message1">
+    "Remember when we first met? I know how things became harder, and I tried my best to resolve the mess. I hope this can make you smile ❤️."
+  </div>
+  <div class="message animate__animated animate__fadeInUp" id="message2">
+    "All the moments we've shared have meant the world to me."
+  </div>
+  <div class="message animate__animated animate__fadeInUp" id="message3">
+    "From the moment you entered my life, you became the light that guided me through my darkest days. Your laughter, your kindness, and your love have filled every empty space in my heart. I can't picture a future that doesn't have you by my side."
+  </div>
+
+  <!-- Countdown Timer -->
+  <div id="timer" class="animate__animated animate__fadeIn"></div>
+
+  <!-- Form Submission Button -->
+  <button id="yes-btn" class="hidden animate__animated animate__heartBeat">Yes!</button>
+
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- GSAP Library for Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <script>
+    // Personalized Messages Animation
+    const messages = document.querySelectorAll('.message');
+    let delay = 1000;
+
+    messages.forEach((msg, index) => {
+      setTimeout(() => {
+        msg.style.opacity = 1;
+      }, delay * (index + 1));
+    });
+
+    // Countdown Timer
+    function startCountdown(durationInSeconds) {
+      const timerElement = document.getElementById('timer');
+      let timeLeft = durationInSeconds;
+
+      const timer = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+
+        timerElement.textContent = `Countdown: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          timerElement.textContent = "The moment is here...";
+          document.getElementById('yes-btn').classList.remove('hidden');
+        }
+
+        timeLeft -= 1;
+      }, 1000);
+    }
+
+    // Start the countdown for 10 seconds
+    startCountdown(10);
+
+    // Form Submission Button Interaction
+    document.getElementById('yes-btn').addEventListener('click', () => {
+      alert("You said YES! ❤️ I can't wait to start a new journey with you.");
+    });
+
+    // Background Image Slideshow
+    const images = [
+      'debby-hudson-jcc8sxK2Adw-unsplash.jpg',
+      'WhatsApp Image 2024-12-11 at 01.43.38_6514f28d.jpg',
+      'WhatsApp Image 2024-12-11 at 01.43.54_24503d05.jpg'
+    ];
+
+    let currentIndex = 0;
+
+    function changeBackground() {
+      document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
+      currentIndex = (currentIndex + 1) % images.length;
+    }
+
+    // Change the background every 5 seconds
+    setInterval(changeBackground, 5000);
+
+    // Initialize the first background
+    changeBackground();
+  </script>
+</body>
+</html>
