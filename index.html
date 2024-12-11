@@ -38,7 +38,7 @@
       margin: 30px 0;
     }
 
-    #yes-btn {
+    .btn {
       padding: 15px 30px;
       font-size: 1.5rem;
       background-color: #ff69b4;
@@ -47,43 +47,101 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background 0.3s;
+      margin: 10px;
     }
 
-    #yes-btn:hover {
+    .btn:hover {
       background-color: #ff1493;
     }
 
     .hidden {
       display: none;
     }
+
+    #page2, #page3 {
+      display: none;
+    }
   </style>
 </head>
 
 <body>
-  <h1 class="animate__animated animate__fadeInDown">Will You Hold My Heart Forever?</h1>
+  <!-- Page 1: Initial Proposal -->
+  <div id="page1">
+    <h1 class="animate__animated animate__fadeInDown">Will You Hold My Heart Forever?</h1>
 
-  <div class="message animate__animated animate__fadeInUp" id="message1">
-    "Remember when we first met? I know how things became harder, and I tried my best to resolve the mess. I hope this can make you smile ❤️."
-  </div>
-  <div class="message animate__animated animate__fadeInUp" id="message2">
-    "The moments we've shared mean everything to me. You've turned ordinary times into extraordinary memories, and for that, I'll always be grateful"
-  </div>
-  <div class="message animate__animated animate__fadeInUp" id="message3">
-    "From the moment you entered my life, you became the light that guided me through my darkest days. Your laughter, your kindness, and your love have filled every empty space in my heart. I dont know why this happen but this is life."
+    <div class="message animate__animated animate__fadeInUp" id="message1">
+      "Remember when we first met? I know how things became harder, and I tried my best to resolve the mess. I hope this can make you smile ❤️."
+    </div>
+    <div class="message animate__animated animate__fadeInUp" id="message2">
+      "The moments we've shared mean everything to me. You've turned ordinary times into extraordinary memories, and for that, I'll always be grateful."
+    </div>
+    <div class="message animate__animated animate__fadeInUp" id="message3">
+      "From the moment you entered my life, you became the light that guided me through my darkest days. Your laughter, your kindness, and your love have filled every empty space in my heart."
+    </div>
+
+    <!-- Countdown Timer -->
+    <div id="timer" class="animate__animated animate__fadeIn"></div>
+
+    <!-- Form Submission Buttons -->
+    <button id="yes-btn" class="btn hidden animate__animated animate__heartBeat">Yes!</button>
+    <button id="no-btn" class="btn hidden animate__animated animate__shakeX">No</button>
   </div>
 
-  <!-- Countdown Timer -->
-  <div id="timer" class="animate__animated animate__fadeIn"></div>
-
-  <!-- Form Submission Button -->
-  <button id="yes-btn" class="hidden animate__animated animate__heartBeat">Yes!</button>
+  <!-- Page 2: Yes Response -->
+<div id="page2">
+    <h1 class="animate__animated animate__fadeInDown">You Said YES! ❤️</h1>
+    <p class="animate__animated animate__fadeInUp">
+        You said YES! ❤️ yeyeyyyyyyy You have my heart 🌟
+    </p>
+    <button id="back-btn-yes" class="btn">Back</button>
+  </div>
+  
+  <!-- Page 3: No Response -->
+  <div id="page3">
+    <h1 class="animate__animated animate__fadeInDown">Oh No! 💔</h1>
+    <p class="animate__animated animate__fadeInUp">
+        😠😠😠😠
+        👊👊👊👊
+    </p>
+    <p class="animate__animated animate__fadeInUp">Take care, and Wishing you all the happiness in the world!I’m going to unleash my inner sarcastic sloth. 🦥</p>
+    
+    <!-- Punch Image -->
+    <img src="angry-emoji-handwritten-text-isolated-black-background-mad-emoticon-d-rendering-fighter-showing-punch-fist-gesture-184668615.webp" alt="Punch" class="animate__animated animate__bounce" style="width: 200px; margin: 20px auto; display: block;">
+  
+    <button id="back-btn-no" class="btn">Back</button>
+  </div>
+  
+  <script>
+    // Button Interactions for Yes
+    document.getElementById('yes-btn').addEventListener('click', () => {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'block';
+    });
+  
+    // Button Interactions for No
+    document.getElementById('no-btn').addEventListener('click', () => {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page3').style.display = 'block';
+    });
+  
+    // Back Button for Yes Page
+    document.getElementById('back-btn-yes').addEventListener('click', () => {
+      document.getElementById('page2').style.display = 'none';
+      document.getElementById('page1').style.display = 'block';
+    });
+  
+    // Back Button for No Page
+    document.getElementById('back-btn-no').addEventListener('click', () => {
+      document.getElementById('page3').style.display = 'none';
+      document.getElementById('page1').style.display = 'block';
+    });
+  </script>
 
   <!-- Background Music -->
   <audio id="bg-music" autoplay loop>
     <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
-
 
   <!-- GSAP Library for Animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -114,25 +172,33 @@
           clearInterval(timer);
           timerElement.textContent = "The moment is here...";
           document.getElementById('yes-btn').classList.remove('hidden');
+          document.getElementById('no-btn').classList.remove('hidden');
         }
 
         timeLeft -= 1;
       }, 1000);
     }
 
-    // Start the countdown for 10 seconds
+    // Start the countdown for 5 seconds
     startCountdown(5);
 
-    // Form Submission Button Interaction
+    // Button Interactions
     document.getElementById('yes-btn').addEventListener('click', () => {
-      alert("You said YES! ❤️ yeyeyyyyyyy You have my heart 🌟");
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'block';
+    });
+
+    document.getElementById('no-btn').addEventListener('click', () => {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page3').style.display = 'block';
     });
 
     // Background Image Slideshow
     const images = [
       'debby-hudson-jcc8sxK2Adw-unsplash.jpg',
       'WhatsApp Image 2024-12-11 at 01.43.38_6514f28d.jpg',
-      'WhatsApp Image 2024-12-11 at 01.43.54_24503d05.jpg'
+      'WhatsApp Image 2024-12-11 at 01.43.54_24503d05.jpg',
+      'WhatsApp Image 2024-12-11 at 01.43.38_6514f28d.jpg'
     ];
 
     let currentIndex = 0;
@@ -147,21 +213,17 @@
 
     // Initialize the first background
     changeBackground();
-  </script>
 
-<script>
+    // Background Music Handling
     window.addEventListener('DOMContentLoaded', () => {
       const bgMusic = document.getElementById('bg-music');
-  
-      // Try playing immediately (may be blocked by some browsers)
+
       bgMusic.play().catch(() => {
-        // Play after user interaction if autoplay is blocked
         document.body.addEventListener('click', () => {
           bgMusic.play();
         }, { once: true });
       });
     });
   </script>
-  
 </body>
 </html>
