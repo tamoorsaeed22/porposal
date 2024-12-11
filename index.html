@@ -79,7 +79,7 @@
   <button id="yes-btn" class="hidden animate__animated animate__heartBeat">Yes!</button>
 
   <!-- Background Music -->
-  <audio id="bg-music" autoplay loop muted>
+  <audio id="bg-music" autoplay loop>
     <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
@@ -148,5 +148,20 @@
     // Initialize the first background
     changeBackground();
   </script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const bgMusic = document.getElementById('bg-music');
+  
+      // Try playing immediately (may be blocked by some browsers)
+      bgMusic.play().catch(() => {
+        // Play after user interaction if autoplay is blocked
+        document.body.addEventListener('click', () => {
+          bgMusic.play();
+        }, { once: true });
+      });
+    });
+  </script>
+  
 </body>
 </html>
